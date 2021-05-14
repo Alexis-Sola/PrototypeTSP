@@ -33,6 +33,7 @@ public class AddEntriesController {
 	  // Tableau de points
 	  @FXML private javafx.scene.control.TableView<Point2D> table;
 	  
+	  // Texte qui affiche une erreur
 	  @FXML private javafx.scene.text.Text textError;
 	  
 	  // Listes de points de l'appli
@@ -56,7 +57,7 @@ public class AddEntriesController {
 	     * Initialise les composants de base
 	     * Le tableau
 	     */
-	    @FXML
+		@FXML
 	    public void initialize() {
 	    	
 	    	TableColumn<Point2D, String> xColumn = new TableColumn<Point2D, String>("Position 1");
@@ -126,8 +127,7 @@ public class AddEntriesController {
 	    		text = "Le nombre de point max est atteint";	
 	    	else 
 	    	{
-		    	int nbPoints;
-		    	
+		    	int nbPoints;		    	
 		    	// Si le champ n'est pas vide
 		    	if(number_of_points.getText() != null)
 		    	{
@@ -145,6 +145,9 @@ public class AddEntriesController {
 		        // Génération de points aléatoires
 		    	for(int i = 0; i < nbPoints; i++)
 		    	{
+			    	if(!pointList.isEmpty() && pointList.size() > maxPoints + 1)
+			    		break;
+
 		    	    int x = rand.nextInt(maxPoints) + 1;
 		    	    int y = rand.nextInt(maxPoints) + 1;
 		    		
@@ -163,11 +166,17 @@ public class AddEntriesController {
     		textError.setText(text);
 	    } 
 	    
+	    
+	    /*
+	     * Reset le tableau
+	     */
 	    @FXML
 	    private void deleteTableContent()
 	    {
 	    	table.getItems().clear();
+	    	pointList.clear();
 	    }
+
 	    
 	    /*
 	     * Check si un point est déjà entré

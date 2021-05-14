@@ -2,7 +2,9 @@ package application;
 
 import java.io.IOException;
 
+import application.ressources.BundleResource;
 import application.tools.Tools;
+import application.tools.ViewsManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,14 +23,7 @@ public class ImportMapController {
     @FXML
     private void openHomeView() throws IOException {
          
-        Scene scene = new Scene(Tools.loadFXML("HomeView"), 600, 600);
-        
-        Stage stage = new Stage();
-        stage.setTitle("Vue principale");
-        stage.setScene(scene);
-        
-        stage.show();
-        
+    	ViewsManager.OpenHomeView();   
         Tools.closePreviousScene(backButton);
     } 
 

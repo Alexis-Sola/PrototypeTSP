@@ -4,5 +4,5 @@ module Prototypage {
 	requires gs.core;
 	requires javafx.fxml;
 	
-	opens application to javafx.graphics, javafx.fxml, gs.core;
+	opens application to javafx.graphics, javafx.fxml, gs.core, javafx.base;
 }

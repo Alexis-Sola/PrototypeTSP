@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 
 import application.tools.Tools;
+import application.tools.ViewsManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,15 +22,15 @@ public class HomeController {
      */
     @FXML
     private void openImportMapView() throws IOException {
-         
-        Scene scene = new Scene(Tools.loadFXML("ImportMapView"), 400, 500);
-        
-        Stage stage = new Stage();
-        stage.setTitle("Importer une carte");
-        stage.setScene(scene);
-        
-        stage.show();
-        
+               
+        ViewsManager.OpenImportMapView();
+        Tools.closePreviousScene(importButton);
+    } 
+    
+    @FXML
+    private void openAddEntriesView() throws IOException {
+               
+        ViewsManager.OpenAddEntriesView();
         Tools.closePreviousScene(importButton);
     } 
 

@@ -7,19 +7,20 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
+import application.ressources.BundleResource;
 import application.tools.Tools;
+import application.tools.ViewsManager;
 
 
 public class Main extends Application {
 	
-	  private static Scene scene;
+	 private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(Tools.loadFXML("HomeView"), 640, 600);
-        stage.setScene(scene);
-        stage.show();
+    	ViewsManager.OpenHomeView();
     }
 
     /*static void setRoot(String fxml) throws IOException {

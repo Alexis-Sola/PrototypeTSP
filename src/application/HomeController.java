@@ -5,11 +5,6 @@ import java.io.IOException;
 import application.tools.Tools;
 import application.tools.ViewsManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 public class HomeController {
     

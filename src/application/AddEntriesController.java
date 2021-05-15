@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.graphstream.ui.geom.Point2;
-
 import application.ressources.BundleResource;
 import application.tools.Tools;
 import application.tools.ViewsManager;
@@ -14,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 
-public class AddEntriesController {
+public class AddEntriesController extends BundleResource {
 
 	  @FXML private javafx.scene.control.Button backButton;
 	  
@@ -37,7 +35,7 @@ public class AddEntriesController {
 	  @FXML private javafx.scene.text.Text textError;
 	  
 	  // Listes de points de l'appli
-	  private ArrayList<Point2D> pointList = new ArrayList<Point2D>();
+	  public ArrayList<Point2D> pointList = new ArrayList<Point2D>();
 	  
   	  private int maxPoints = Integer.parseInt(BundleResource.bundle.getString("points.max"));
 
@@ -80,11 +78,11 @@ public class AddEntriesController {
 	    @FXML
 	    private void addPointsToTab() {
 	    	
-	    	String text = "Impossible d'entrer des points en double ou du texte.";
+	    	String text = bundle.getString("user.hints.error");
 	    	
 	    	// Il y a une nombre max de points
 	    	if(!pointList.isEmpty() && pointList.size() > maxPoints + 1)
-	    		text = "Le nombre de point max est atteint.";	
+	    		text = bundle.getString("max.points.reach");	
 	    	else
 	    	{   
 	    		// On vérifie que le champ n'est pas vide
@@ -124,7 +122,7 @@ public class AddEntriesController {
 	    	
 	    	// Check si l'on ne depasse pas le nombre max de point
 	    	if(!pointList.isEmpty() && pointList.size() > maxPoints + 1)
-	    		text = "Le nombre de point max est atteint";	
+	    		text = bundle.getString("max.points.reach");	
 	    	else 
 	    	{
 		    	int nbPoints;		    	
@@ -150,7 +148,7 @@ public class AddEntriesController {
 
 		    	    int x = rand.nextInt(maxPoints) + 1;
 		    	    int y = rand.nextInt(maxPoints) + 1;
-		    		
+    		
 	    	    	Point2D newPoint = new Point2D(x, y);
 	
 	    	    	if(!isAlreadyExist(pointList, newPoint))
@@ -177,6 +175,23 @@ public class AddEntriesController {
 	    	pointList.clear();
 	    }
 
+	    /*/
+	     * Ouvre la page suivante et sauvegarde la configuration
+	     */
+	    @FXML
+	    private void valider() throws IOException
+	    {
+	    	textError.setText("");
+	    	if(!pointList.isEmpty())
+	    	{
+	    		Communication.staticPointList = pointList;
+	    		Tools.writePoint2DInCSVFile(pointList);
+	    		ViewsManager.OpenTSPView();
+	    		Tools.closePreviousScene(backButton);
+	    		return;
+	    	}
+	    	textError.setText(bundle.getString("points.missing"));
+	    }
 	    
 	    /*
 	     * Check si un point est déjà entré

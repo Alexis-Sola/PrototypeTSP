@@ -1,26 +1,18 @@
 package application;
 	
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ResourceBundle;
 
-import application.ressources.BundleResource;
-import application.tools.Tools;
 import application.tools.ViewsManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 
 public class Main extends Application {
 	
-	 private static Scene scene;
-
-    @Override
+	 @Override
     public void start(Stage stage) throws IOException {
     	ViewsManager.OpenHomeView();
+	
     }
 
     /*static void setRoot(String fxml) throws IOException {

@@ -49,7 +49,7 @@
             </SplitPane>
          </center>
          <bottom>
-            <Button mnemonicParsing="false" text="VALIDER LA CREATION" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" text="VALIDER LA CREATION" BorderPane.alignment="CENTER" onAction="#valider">
                <font>
                   <Font size="15.0" />
                </font>

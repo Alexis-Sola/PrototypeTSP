@@ -1,8 +1,13 @@
 package application.tools;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import application.Main;
@@ -15,17 +20,26 @@ import javafx.stage.Stage;
 
 public class Tools extends BundleResource{
 		
+	/*
+	 * Charge la vue de départ
+	 */
 	 public static Parent loadFXML(String fxml) throws IOException {
 	        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
 	        return fxmlLoader.load();
 	    }
 	 
+	 /*
+	  * Ferme la vue précédente
+	  */
     public static void closePreviousScene(Node obj) throws IOException {
          
         Stage stage = (Stage) obj.getScene().getWindow();
         stage.close();
     }
     
+    /*
+     * Cache une vue
+     */
     public static void hideView(Node obj) throws IOException {
         
         Stage stage = (Stage) obj.getScene().getWindow();
@@ -58,6 +72,33 @@ public class Tools extends BundleResource{
 
     	csvWriter.flush();
     	csvWriter.close();	
+    }
+    
+    /*
+     * Read csv file
+     */
+    public static ArrayList<Point2D> readCSVFile(File file) throws FileNotFoundException, IOException
+    {
+    	ArrayList<Point2D> records = new ArrayList<>();
+    	
+    	try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+    	    String line;
+    	    int cpt = 0;
+    	    while ((line = br.readLine()) != null) {
+    	    	if(cpt > 0)
+    	    	{
+	    	        String[] values = line.split(",");
+	    	        int x = Integer.parseInt(values[0]);
+	    	        int y = Integer.parseInt(values[1]);
+	
+	    	        Point2D newPoint = new Point2D(x, y);
+	    	        records.add(newPoint);
+    	    	}
+    	    	cpt++;
+    	    }
+    	}
+    	
+    	return records;
     }
 
 }

@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 
 public class HomeController {
     
-    @FXML private javafx.scene.control.Button importButton;
+    @FXML private javafx.scene.control.Button createButton;
 
     
     /**
@@ -19,14 +19,14 @@ public class HomeController {
     private void openImportMapView() throws IOException {
                
         ViewsManager.OpenImportMapView();
-        Tools.closePreviousScene(importButton);
+        Tools.closePreviousScene(createButton);
     } 
     
     @FXML
     private void openAddEntriesView() throws IOException {
                
         ViewsManager.OpenAddEntriesView();
-        Tools.closePreviousScene(importButton);
+        Tools.closePreviousScene(createButton);
     } 
 
 }

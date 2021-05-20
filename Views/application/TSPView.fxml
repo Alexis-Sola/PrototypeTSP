@@ -15,46 +15,57 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="start" layoutX="14.0" layoutY="109.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="DEMARRER" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.0">
+                  <Button fx:id="start" layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#startTSP" prefHeight="50.0" prefWidth="100.0" text="DEMARRER" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="stop" disable="true" layoutX="15.0" layoutY="186.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="165.0" text="ARRETER" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                  <Button fx:id="stop" disable="true" layoutX="15.0" layoutY="186.0" mnemonicParsing="false" onAction="#stopTSP" prefHeight="50.0" prefWidth="165.0" text="ARRETER" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="runAgain" disable="true" layoutX="15.0" layoutY="257.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="165.0" text="RECOMMENCER" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                  <Button fx:id="restart" disable="true" layoutX="15.0" layoutY="257.0" mnemonicParsing="false" onAction="#restartTSP" prefHeight="50.0" prefWidth="165.0" text="RECOMMENCER" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="pause" disable="true" layoutX="15.0" layoutY="389.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="165.0" text="METTRE EN PAUSE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                  <Button fx:id="pause" disable="true" layoutX="15.0" layoutY="389.0" mnemonicParsing="false" onAction="#pauseTSP" prefHeight="50.0" prefWidth="165.0" text="METTRE EN PAUSE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="RETOUR" />
+                  <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#openHome" text="RETOUR" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="582.0" prefWidth="1369.0">
                <children>
-                  <CheckBox layoutX="468.0" layoutY="542.0" mnemonicParsing="false" text="Visualisation pas à pas" AnchorPane.bottomAnchor="22.0" AnchorPane.rightAnchor="248.0" />
-                  <Slider layoutX="680.0" layoutY="548.0" prefHeight="16.0" prefWidth="195.0" AnchorPane.bottomAnchor="18.0" AnchorPane.rightAnchor="14.0" />
-                  <Button fx:id="stepBack" layoutX="14.0" layoutY="538.0" mnemonicParsing="false" text="ARRIERE" visible="false" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="10.0" />
-                  <Button fx:id="stepForward" layoutX="102.0" layoutY="538.0" mnemonicParsing="false" text="AVANT" visible="false" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="102.0" />
-                  <Text layoutX="714.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ralentir l'éxecution" AnchorPane.bottomAnchor="36.0" AnchorPane.rightAnchor="48.80224609375" />
+                  <CheckBox fx:id="allowStep" layoutX="28.0" layoutY="542.0" mnemonicParsing="false" onAction="#allowStepByStep" text="Visualisation pas à pas" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="28.0" />
+                  <Slider fx:id="slider" layoutX="781.0" layoutY="543.0" prefHeight="16.0" prefWidth="182.0" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="86.0" />
+                  <Button fx:id="stepForward" layoutX="221.0" layoutY="538.0" mnemonicParsing="false" onAction="#makeStepForward" text="AVANCE CHEMIN" visible="false" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="221.0" />
+                  <Text layoutX="707.3505859375" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accélérer" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="280.166015625" />
+                  <Text layoutX="969.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ralentir" AnchorPane.bottomAnchor="24.93408203125" AnchorPane.rightAnchor="29.09814453125" />
+                  <Text fx:id="textInfo" layoutX="378.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La recherche du chemin n'a pas commencée" AnchorPane.bottomAnchor="24.93408203125" AnchorPane.leftAnchor="378.0" AnchorPane.rightAnchor="378.56982421875" />
                   <SplitPane dividerPositions="0.5004775549188156" layoutX="2.0" prefHeight="522.0" prefWidth="1049.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Pane fx:id="leftPane" layoutX="4.0" layoutY="7.0" prefHeight="503.0" prefWidth="510.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0" />
+                              <Pane fx:id="leftPane" layoutX="4.0" layoutY="30.0" prefHeight="480.0" prefWidth="510.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="30.0" />
+                              <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recherche du chemin">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Pane fx:id="rightPane" layoutX="9.0" layoutY="3.0" prefHeight="514.0" prefWidth="510.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
+                              <Pane fx:id="rightPane" layoutX="9.0" layoutY="30.0" prefHeight="487.0" prefWidth="510.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
+                              <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meilleur chemin trouvé" AnchorPane.bottomAnchor="489.283203125" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="274.04296875" AnchorPane.topAnchor="6.716796875">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                     </items>

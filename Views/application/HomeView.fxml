@@ -35,8 +35,8 @@
          <children>
                   <HBox alignment="CENTER" layoutY="38.0" prefHeight="43.0" prefWidth="467.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Button fx:id="importButton" mnemonicParsing="false" onAction="#openImportMapView" prefHeight="26.0" prefWidth="146.0" text="Créer une carte" />
-                        <Button mnemonicParsing="false" text="Importer une carte" onAction="#openAddEntriesView">
+                        <Button fx:id="createButton" mnemonicParsing="false" onAction="#openAddEntriesView" prefHeight="26.0" prefWidth="146.0" text="Créer une carte" />
+                        <Button mnemonicParsing="false" text="Importer une carte" onAction="#openImportMapView">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
